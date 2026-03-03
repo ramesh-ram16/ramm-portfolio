@@ -1,39 +1,25 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import Hero from "./Hero";
+import { Home as HomeIcon, User, Briefcase, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const rotateX = useTransform(y, [-100, 100], [8, -8]);
-  const rotateY = useTransform(x, [-100, 100], [-8, 8]);
-
-  function handleMouseMove(e) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    x.set(e.clientX - rect.left - rect.width / 2);
-    y.set(e.clientY - rect.top - rect.height / 2);
-  }
-
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center text-center text-white px-6">
-
-      <motion.h1
-        onMouseMove={handleMouseMove}
-        style={{ rotateX, rotateY }}
-        className="text-6xl md:text-8xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent cursor-pointer"
-        transition={{ type: "spring", stiffness: 200, damping: 15 }}
-      >
-        Ramesh Besta
-      </motion.h1>
-
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        className="mt-6 text-gray-400 text-lg"
-      >
-        Welcome to my profile
-      </motion.p>
-
-    </section>
+    <>
+      <Hero />
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3 flex flex-col gap-6 text-gray-400 shadow-lg">
+        <Link to="/" className="hover:text-white transition">
+          <HomeIcon size={20} />
+        </Link>
+        <Link to="/about" className="hover:text-white transition">
+          <User size={20} />
+        </Link>
+        <Link to="/projects" className="hover:text-white transition">
+          <Briefcase size={20} />
+        </Link>
+        <Link to="/contact" className="hover:text-white transition">
+          <Mail size={20} />
+        </Link>
+      </div>
+    </>
   );
 }
