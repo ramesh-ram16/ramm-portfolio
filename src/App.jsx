@@ -1,25 +1,44 @@
 ﻿import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+
 import Navbar from "./components/Navbar";
+import FloatingNav from "./components/FloatingNav";
 import CustomCursor from "./components/CustomCursor";
+import BackgroundParticles from "./components/BackgroundParticles";
 
 export default function App() {
   const location = useLocation();
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#1a103d] via-[#1f1147] to-[#0f0a2a] text-white overflow-hidden">
-      {/* Subtle glow */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-orange-500/20 blur-3xl rounded-full pointer-events-none" />
-      
+      <BackgroundParticles />
+
+      {/* Animated background glow */}
+      <motion.div
+        className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-pink-900/40 blur-[150px] rounded-full pointer-events-none"
+        animate={{
+          opacity: [0.15, 0.35, 0.15],
+          scale: [1, 1.08, 1]
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
       <CustomCursor />
       <Navbar />
+      <FloatingNav />
 
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
+
           <Route
             path="/"
             element={
@@ -28,6 +47,7 @@ export default function App() {
               </PageWrapper>
             }
           />
+
           <Route
             path="/about"
             element={
@@ -36,6 +56,7 @@ export default function App() {
               </PageWrapper>
             }
           />
+
           <Route
             path="/projects"
             element={
@@ -44,6 +65,7 @@ export default function App() {
               </PageWrapper>
             }
           />
+
           <Route
             path="/contact"
             element={
@@ -52,8 +74,10 @@ export default function App() {
               </PageWrapper>
             }
           />
+
         </Routes>
       </AnimatePresence>
+
     </div>
   );
 }
