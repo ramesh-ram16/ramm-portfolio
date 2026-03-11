@@ -16,7 +16,7 @@ export default function App() {
   const location = useLocation();
 
   return (
-    <div className="relative min-h-screen animated-bg text-white overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-br from-[#1a103d] via-[#1f1147] to-[#0f0a2a] text-white overflow-hidden">
 
       {/* background particles */}
       <BackgroundParticles />
