@@ -14,7 +14,7 @@ export default function Hero() {
   Frontend Developer
   <br />
   <span className="text-white text-4xl md:text-5xl font-semibold">
-    Building modern web interfaces
+    Crafting fast, modern web experiences
   </span>
 </h1>
 

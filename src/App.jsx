@@ -10,25 +10,28 @@ import Navbar from "./components/Navbar";
 import FloatingNav from "./components/FloatingNav";
 import CustomCursor from "./components/CustomCursor";
 import BackgroundParticles from "./components/BackgroundParticles";
+import Footer from "./components/Footer";
 
 export default function App() {
   const location = useLocation();
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-[#1a103d] via-[#1f1147] to-[#0f0a2a] text-white overflow-hidden">
+    <div className="relative min-h-screen animated-bg text-white overflow-hidden">
+
+      {/* background particles */}
       <BackgroundParticles />
 
-      {/* Animated background glow */}
+      {/* animated glow */}
       <motion.div
         className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-pink-900/40 blur-[150px] rounded-full pointer-events-none"
         animate={{
           opacity: [0.15, 0.35, 0.15],
-          scale: [1, 1.08, 1]
+          scale: [1, 1.08, 1],
         }}
         transition={{
           duration: 10,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut",
         }}
       />
 
@@ -38,7 +41,6 @@ export default function App() {
 
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-
           <Route
             path="/"
             element={
@@ -74,10 +76,10 @@ export default function App() {
               </PageWrapper>
             }
           />
-
         </Routes>
       </AnimatePresence>
 
+      <Footer />
     </div>
   );
 }
